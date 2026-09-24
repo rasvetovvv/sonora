@@ -17,3 +17,6 @@ app/src-tauri/gen/
 # misc
 .DS_Store
 *.log
+
+# tsc build info
+*.tsbuildinfo
