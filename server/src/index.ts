@@ -37,6 +37,17 @@ const authed = { preHandler: (app as any).auth };
 
 app.get("/health", async () => ({ status: "ok", service: "sonora-api", v: 2 }));
 
+// ---- auto-update feed -------------------------------------------------------
+// Serves the Tauri updater manifest. The file is mounted read-only into the
+// container at /app/updates/latest.json (see docker-compose).
+app.get("/updates/latest.json", async (_req, reply) => {
+  const path = process.env.UPDATES_FILE ?? "/app/updates/latest.json";
+  if (!existsSync(path)) return reply.code(204).send();
+  reply.header("content-type", "application/json");
+  reply.header("cache-control", "no-cache");
+  return reply.send(createReadStream(path));
+});
+
 // ---- auth -------------------------------------------------------------------
 app.post("/api/auth/register", async (req, reply) => {
   const { email, password, display_name } = (req.body ?? {}) as Record<string, string>;

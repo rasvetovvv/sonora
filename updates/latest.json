@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "notes": "Аккаунты, SoundCloud, лайки, плейлисты, загрузка треков, меню песни, авто-обновление и новый дизайн.",
+  "pub_date": "2026-09-24T23:22:19Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRZUFuSDJwRzl6QjVmRW9jSURzNSs4K2JvSkY3eWE0WEVFdmRoRGpmL215aDJpOWtPcDNscEtUWUxPbHUzLzZyNVJHSDlWQ2VIN1pjMnFlQVUzejM3QzIxMzZvRVdvUEFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwMjkyMTIwCWZpbGU6U29ub3JhXzEuMC4wX3g2NC1zZXR1cC5leGUKeUs2d2F5VVhXWUVkb05YZzFNOG5lNTZFOTFFRm90M1liM2xkT3UvTUNEeklXOWRqT0dJRlc1Zld1UGVpL0hhYUVIcFYraGE2Wk5XQ21FeW1BY3VRRHc9PQo=",
+      "url": "https://github.com/rasvetovvv/sonora/releases/download/sonora-dev/Sonora_1.0.0_x64-setup.exe"
+    }
+  }
+}

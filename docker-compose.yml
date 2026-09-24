@@ -6,8 +6,11 @@ services:
       PORT: "8080"
       DATA_DIR: /data
       JWT_SECRET: ${JWT_SECRET:-sonora-dev-secret-change-me}
+      UPDATES_FILE: /app/updates/latest.json
     volumes:
       - sonora_data:/data
+      # Auto-update manifest, served at /updates/latest.json (read-only).
+      - ./updates:/app/updates:ro
     ports:
       - "127.0.0.1:8096:8080"
     networks:
