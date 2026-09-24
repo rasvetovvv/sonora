@@ -8,6 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "composite": true,
+    "types": ["node"],
     "outDir": "./node_modules/.tmp/tsnode"
   },
   "include": ["vite.config.ts"]
