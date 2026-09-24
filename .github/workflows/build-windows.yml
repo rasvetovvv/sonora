@@ -34,6 +34,8 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
           projectPath: app
           tagName: ${{ github.ref_type == 'tag' && github.ref_name || 'sonora-dev' }}
@@ -41,10 +43,11 @@ jobs:
           releaseDraft: false
           prerelease: false
 
-      - name: Upload installer artifact
+      - name: Upload installer + updater artifacts
         uses: actions/upload-artifact@v4
         with:
           name: sonora-windows-setup
           path: |
             app/src-tauri/target/release/bundle/nsis/*.exe
+            app/src-tauri/target/release/bundle/nsis/*.sig
           if-no-files-found: error

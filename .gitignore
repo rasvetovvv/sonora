@@ -20,3 +20,8 @@ app/src-tauri/gen/
 
 # tsc build info
 *.tsbuildinfo
+.tauri-signing.key
+.tauri-signing.key.pub
+
+# built installer artifacts
+Sonora_*_x64-setup.exe

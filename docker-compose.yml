@@ -4,6 +4,10 @@ services:
     environment:
       NODE_ENV: production
       PORT: "8080"
+      DATA_DIR: /data
+      JWT_SECRET: ${JWT_SECRET:-sonora-dev-secret-change-me}
+    volumes:
+      - sonora_data:/data
     ports:
       - "127.0.0.1:8096:8080"
     networks:
@@ -11,6 +15,9 @@ services:
         aliases:
           - sonora-api
     restart: unless-stopped
+
+volumes:
+  sonora_data:
 
 networks:
   hosting:

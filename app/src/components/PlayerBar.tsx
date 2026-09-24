@@ -41,6 +41,7 @@ export function PlayerBar({
   const toggleShuffle = usePlayer((s) => s.toggleShuffle);
 
   const pct = duration > 0 ? (progress / duration) * 100 : 0;
+  const loading = usePlayer((s) => s.loading);
 
   return (
     <div className="glass relative z-10 flex h-24 items-center gap-4 border-t px-4">
@@ -76,7 +77,7 @@ export function PlayerBar({
             {current?.title ?? "Ничего не играет"}
           </p>
           <p className="truncate text-xs text-white/50">
-            {current?.artist ?? "Выберите трек"}
+            {loading ? "Загрузка…" : current?.artist ?? "Выберите трек"}
           </p>
         </div>
       </div>
@@ -177,7 +178,7 @@ function IconBtn({
 
 function sliderStyle(pct: number): React.CSSProperties {
   return {
-    background: `linear-gradient(to right, #a855f7 ${pct}%, rgba(255,255,255,0.14) ${pct}%)`,
+    background: `linear-gradient(to right, #ff6b81 ${pct}%, rgba(255,255,255,0.14) ${pct}%)`,
   };
 }
 
@@ -197,7 +198,7 @@ const sliderCss = `
   height: 12px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 8px rgba(168,85,247,0.8);
+  box-shadow: 0 0 8px rgba(255,107,129,0.85);
   transition: transform 0.1s;
 }
 .slider::-webkit-slider-thumb:hover { transform: scale(1.25); }

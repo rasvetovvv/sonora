@@ -59,8 +59,8 @@ export function Visualizer({
         const x = i * (bw + gap);
         const y = (h - bh) / 2;
         const grad = ctx.createLinearGradient(0, y, 0, y + bh);
-        grad.addColorStop(0, "#a855f7");
-        grad.addColorStop(1, "#22d3ee");
+        grad.addColorStop(0, "#ff6b81");
+        grad.addColorStop(1, "#ffb347");
         ctx.fillStyle = grad;
         const r = Math.max(0, Math.min(bw / 2, bh / 2));
         ctx.beginPath();

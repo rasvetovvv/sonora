@@ -3,5 +3,21 @@
   "identifier": "default",
   "description": "Sonora capability set",
   "windows": ["main"],
-  "permissions": ["core:default", "shell:allow-open"]
+  "permissions": [
+    "core:default",
+    "shell:allow-open",
+    "updater:default",
+    "process:default",
+    "process:allow-restart",
+    {
+      "identifier": "http:default",
+      "allow": [
+        { "url": "https://*.sndcdn.com/" },
+        { "url": "https://*.soundcloud.com/" },
+        { "url": "https://*.audius.co/" },
+        { "url": "https://*.staked.cloud/" },
+        { "url": "https://sonora.vexory.xyz/" }
+      ]
+    }
+  ]
 }

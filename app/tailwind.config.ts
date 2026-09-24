@@ -8,13 +8,14 @@ export default {
         sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
       },
       colors: {
-        base: "#07070c",
+        base: "#0c0b10",
+        base2: "#131118",
         panel: "rgba(255,255,255,0.04)",
-        accent: "#a855f7",
-        accent2: "#22d3ee",
+        accent: "#ff6b81",
+        accent2: "#ffb347",
       },
       keyframes: {
-        "bar": {
+        bar: {
           "0%,100%": { transform: "scaleY(0.3)" },
           "50%": { transform: "scaleY(1)" },
         },

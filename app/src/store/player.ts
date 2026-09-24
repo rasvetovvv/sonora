@@ -3,16 +3,20 @@ import type { Track } from "@/lib/api";
 
 export type RepeatMode = "off" | "all" | "one";
 
+const uid = (t: Track) => `${t.source}:${t.id}`;
+
 type PlayerState = {
   queue: Track[];
   index: number;
   isPlaying: boolean;
+  loading: boolean;
+  error: string | null;
   volume: number;
   muted: boolean;
   repeat: RepeatMode;
   shuffle: boolean;
-  progress: number; // seconds
-  duration: number; // seconds
+  progress: number;
+  duration: number;
 
   current: () => Track | null;
   playNow: (track: Track, contextQueue?: Track[]) => void;
@@ -20,6 +24,8 @@ type PlayerState = {
   enqueue: (track: Track) => void;
   togglePlay: () => void;
   setPlaying: (v: boolean) => void;
+  setLoading: (v: boolean) => void;
+  setError: (v: string | null) => void;
   next: (auto?: boolean) => void;
   prev: () => void;
   setVolume: (v: number) => void;
@@ -34,6 +40,8 @@ export const usePlayer = create<PlayerState>((set, get) => ({
   queue: [],
   index: -1,
   isPlaying: false,
+  loading: false,
+  error: null,
   volume: 0.8,
   muted: false,
   repeat: "off",
@@ -48,17 +56,20 @@ export const usePlayer = create<PlayerState>((set, get) => ({
 
   playNow: (track, contextQueue) => {
     const queue = contextQueue?.length ? contextQueue : [track];
-    const index = queue.findIndex((t) => t.id === track.id);
+    const index = queue.findIndex((t) => uid(t) === uid(track));
     set({ queue, index: index >= 0 ? index : 0, isPlaying: true, progress: 0 });
   },
 
   playQueue: (tracks, startIndex) =>
     set({ queue: tracks, index: startIndex, isPlaying: true, progress: 0 }),
 
-  enqueue: (track) => set((s) => ({ queue: [...s.queue, track] })),
+  enqueue: (track) =>
+    set((s) => ({ queue: [...s.queue, track] })),
 
   togglePlay: () => set((s) => ({ isPlaying: !s.isPlaying })),
   setPlaying: (v) => set({ isPlaying: v }),
+  setLoading: (v) => set({ loading: v }),
+  setError: (v) => set({ error: v }),
 
   next: (auto = false) => {
     const { queue, index, repeat, shuffle } = get();
@@ -86,7 +97,6 @@ export const usePlayer = create<PlayerState>((set, get) => ({
 
   prev: () => {
     const { index, progress } = get();
-    // Restart the track if we're more than 3s in, otherwise go back.
     if (progress > 3) {
       set({ progress: 0 });
       return;
