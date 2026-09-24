@@ -1,0 +1,19 @@
+# deps / build output
+node_modules/
+dist/
+app/node_modules/
+app/dist/
+server/node_modules/
+server/dist/
+
+# rust / tauri
+app/src-tauri/target/
+app/src-tauri/gen/
+
+# env & secrets
+.env
+*.local
+
+# misc
+.DS_Store
+*.log
